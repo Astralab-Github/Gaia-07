@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dmhp6igd4lxen"]
+
+[node name="Tower" type="StaticBody2D"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d07mfdlil4jx8"]
+
+[ext_resource type="Shader" path="res://Resources/Shaders/vhs.gdshader" id="1_vmsj8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lghdt"]
+shader = ExtResource("1_vmsj8")
+shader_parameter/wiggle = 0.03
+shader_parameter/wiggle_speed = 25.0
+shader_parameter/smear = 1.315
+shader_parameter/blur_samples = 15
+
+[node name="VHS" type="ColorRect"]
+z_index = 100
+material = SubResource("ShaderMaterial_lghdt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

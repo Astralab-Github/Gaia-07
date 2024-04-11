@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://7o5511t6clkt"]
+
+[sub_resource type="GDScript" id="GDScript_ax416"]
+script/source = "extends Node
+
+const MAIN_MENU_PACKED: PackedScene = preload(\"res://Scenes/main_menu.tscn\")
+
+var currentScene
+
+func _ready():
+	currentScene = MAIN_MENU_PACKED.instantiate()
+	get_tree().get_root().get_node(\"Game\").add_child(currentScene)
+"
+
+[node name="Game" type="Node"]
+script = SubResource("GDScript_ax416")
