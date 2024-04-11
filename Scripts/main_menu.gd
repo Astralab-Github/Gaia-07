@@ -4,7 +4,6 @@ const LEVEL_ONE: PackedScene = preload("res://Scenes/level_1.tscn")
 
 func _ready():
 	$Splash.visible = true
-	$VHS.visible = true
 	$Sounds/Intro.play()
 	await get_tree().create_timer(2).timeout
 	await get_tree().create_tween().tween_property($Splash, "modulate:a", 0, 1).finished

@@ -42,7 +42,7 @@ func typewriter(text, labelObject):
 func _ready():
 	$CanvasLayer.visible = true
 	
-	var vhsFilter = VHS_FILTER.instantiate(); $CanvasLayer.add_child(vhsFilter)
+	#var vhsFilter = VHS_FILTER.instantiate(); $CanvasLayer.add_child(vhsFilter)
 	
 	await get_tree().create_tween().tween_property($Camera, "position", panCameraTo.position, 1).finished
 	

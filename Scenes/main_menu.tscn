@@ -30,6 +30,7 @@ grow_vertical = 2
 script = ExtResource("1_55yhq")
 
 [node name="VHS" parent="." instance=ExtResource("2_mq3yf")]
+visible = false
 layout_mode = 1
 
 [node name="StarNode" type="Node" parent="."]
