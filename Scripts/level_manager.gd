@@ -3,8 +3,12 @@ extends Node2D
 @export var panCameraTo: Node2D
 @export var dialogueBox: TextureRect
 
+var currentMousePos: Vector2i
+var canPlace: bool = false
+
 const VHS_FILTER: PackedScene = preload("res://Scenes/vhs.tscn")
-const TYPE_SPEED: float = 0.05
+const TOWER: PackedScene = preload("res://Scenes/tower.tscn")
+const TYPE_SPEED: float = 0.035
 const DIALOGUE: Dictionary = {
 	"Level1": [
 		"Nathan:Ugh... My head.",
@@ -13,7 +17,7 @@ const DIALOGUE: Dictionary = {
 		"Dr. Rackham:My first mission was 3 years ago, I've had to put up with this stuff since.",
 		"Nathan:There have barely been any system malfunctions at all!",
 		"Nathan:Other than the soda machine...",
-		"Nathan:I didn't think that this \"extremely important space mission\" I was chosen for was going to go like this.",
+		"Nathan:I didn't think that this \"extremely important space mission\" I was chosen for was going to be so boring.",
 		"Dr. Rackham:Stop thinking so demoralizingly!",
 		"Dr. Rackham:Planet Adorno has some minerals that some societies could only dream of having.",
 		"Nathan:I guess...",
@@ -47,7 +51,8 @@ func _ready():
 	await get_tree().create_tween().tween_property($Camera, "position", panCameraTo.position, 1).finished
 	
 	# Run Dialogue
-	var currentDialogue = DIALOGUE[get_tree().get_root().get_child(0).name]
+	print(get_tree().get_root().get_children())
+	var currentDialogue: PackedStringArray = DIALOGUE[Globals.levelName]
 	await get_tree().create_tween().tween_property(dialogueBox, "modulate:a", 0.8, 1).finished
 	for text in currentDialogue:
 		var splitText = text.split(":")
@@ -56,3 +61,17 @@ func _ready():
 	await get_tree().create_tween().tween_property(dialogueBox, "modulate:a", 0, 1).finished
 	
 	# Run Game
+	# probably introduce ui with a cool tween and start a little tutorial sequence if its level 1
+	# enable the gameloop and tower placing n stuff
+	canPlace = true
+
+func _process(_delta):
+	#currentMousePos = $IsoTiles.local_to_map($IsoTiles.get_local_mouse_position())
+	pass
+
+func _input(event):
+	if event.is_action_pressed("left_click"):
+		$IsoTiles.erase_cell(0, $IsoTiles.local_to_map($IsoTiles.get_local_mouse_position()))
+	elif event.is_action_pressed("right_click"):
+		Globals.spawnTowersWithID = 1; var tower = TOWER.instantiate(); $IsoTiles.add_child(tower)
+		tower.position = $IsoTiles.map_to_local($IsoTiles.local_to_map($IsoTiles.get_local_mouse_position())) + Vector2(-.5, -10.5)
