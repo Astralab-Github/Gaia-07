@@ -73,5 +73,5 @@ func _input(event):
 	if event.is_action_pressed("left_click"):
 		$IsoTiles.erase_cell(0, $IsoTiles.local_to_map($IsoTiles.get_local_mouse_position()))
 	elif event.is_action_pressed("right_click"):
-		Globals.spawnTowersWithID = 1; var tower = TOWER.instantiate(); $IsoTiles.add_child(tower)
+		Globals.spawnTowersWithID = 4; var tower = TOWER.instantiate(); $IsoTiles.add_child(tower)
 		tower.position = $IsoTiles.map_to_local($IsoTiles.local_to_map($IsoTiles.get_local_mouse_position())) + Vector2(-.5, -10.5)

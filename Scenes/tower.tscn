@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dmhp6igd4lxen"]
+[gd_scene load_steps=31 format=3 uid="uid://dmhp6igd4lxen"]
 
 [ext_resource type="Script" path="res://Scripts/tower.gd" id="1_x5fsd"]
 [ext_resource type="Texture2D" uid="uid://bkflyd7j00848" path="res://Art/Sprites/TowerSprites/LineTurret/LineTurretIdle.png" id="2_nl0go"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c7doj8sw6alp5" path="res://Art/Sprites/TowerSprites/ShieldGen/ShieldGenIdle13.png" id="17_80gk1"]
 [ext_resource type="Texture2D" uid="uid://cpndi8ha3h6pi" path="res://Art/Sprites/TowerSprites/ShieldGen/ShieldGenIdle14.png" id="18_3ne4y"]
 [ext_resource type="Texture2D" uid="uid://cj360l8ixl32y" path="res://Art/Sprites/TowerSprites/RallyUnit/RallyUnitIdle.png" id="19_vl4pr"]
+[ext_resource type="Texture2D" uid="uid://cfsnq3p85qec0" path="res://Art/Sprites/RallyUnitPulse.png" id="20_wp2d2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7n1wk"]
 animations = [{
@@ -114,6 +115,28 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_1rgj1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.99408, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_55w8m"]
+curve = SubResource("Curve_1rgj1")
+
+[sub_resource type="Curve" id="Curve_8jsbf"]
+_data = [Vector2(0.00666666, 0), 0.0, 2.3199, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rxbq6"]
+curve = SubResource("Curve_8jsbf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wufhg"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_rxbq6")
+alpha_curve = SubResource("CurveTexture_55w8m")
+
 [node name="Tower" type="Area2D"]
 z_index = 10
 script = ExtResource("1_x5fsd")
@@ -144,3 +167,10 @@ frame_progress = 0.914661
 visible = false
 sprite_frames = SubResource("SpriteFrames_at16x")
 animation = &"idle"
+
+[node name="RallyUnitPulse" type="GPUParticles2D" parent="."]
+position = Vector2(0.4, -8)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_wufhg")
+texture = ExtResource("20_wp2d2")

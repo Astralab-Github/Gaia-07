@@ -15,6 +15,7 @@ func _ready():
 			currentTower = $ShieldGen
 		4:
 			currentTower = $RallyUnit
+			$RallyUnitPulse.emitting = true
 	currentTower.visible = true
 	currentTower.play("idle")
 	
