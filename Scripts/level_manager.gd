@@ -2,6 +2,7 @@ extends Node2D
 
 @export var panCameraTo: Node2D
 @export var dialogueBox: TextureRect
+@export var enemyPaths: Array[Path2D]
 
 var currentMousePos: Vector2i
 var canPlace: bool = false
@@ -48,21 +49,31 @@ func _ready():
 	
 	#var vhsFilter = VHS_FILTER.instantiate(); $CanvasLayer.add_child(vhsFilter)
 	
-	await get_tree().create_tween().tween_property($Camera, "position", panCameraTo.position, 1).finished
-	
 	# Run Dialogue
 	print(get_tree().get_root().get_children())
 	var currentDialogue: PackedStringArray = DIALOGUE[Globals.levelName]
 	await get_tree().create_tween().tween_property(dialogueBox, "modulate:a", 0.8, 1).finished
 	for text in currentDialogue:
 		var splitText = text.split(":")
-		dialogueBox.get_node("Speaker").set_text(splitText[0])
+		var speakerText = splitText[0]
+		dialogueBox.get_node("Speaker").set_text(speakerText)
+		match speakerText:
+			"Nathan":
+				get_tree().create_tween().tween_property(dialogueBox.get_node("Nathan"), "modulate:a", 1, 0.5)
+				get_tree().create_tween().tween_property(dialogueBox.get_node("Rackham"), "modulate:a", .45, 0.5)
+			"Dr. Rackham":
+				get_tree().create_tween().tween_property(dialogueBox.get_node("Nathan"), "modulate:a", .45, 0.5)
+				get_tree().create_tween().tween_property(dialogueBox.get_node("Rackham"), "modulate:a", 1, 0.5)
+			" ":
+				get_tree().create_tween().tween_property(dialogueBox.get_node("Nathan"), "modulate:a", .45, 0.5)
+				get_tree().create_tween().tween_property(dialogueBox.get_node("Rackham"), "modulate:a", .45, 0.5)
 		await typewriter(splitText[1], dialogueBox.get_node("Text"))
 	await get_tree().create_tween().tween_property(dialogueBox, "modulate:a", 0, 1).finished
 	
 	# Run Game
 	# probably introduce ui with a cool tween and start a little tutorial sequence if its level 1
 	# enable the gameloop and tower placing n stuff
+	await get_tree().create_tween().tween_property($Camera, "position", panCameraTo.position, 1).finished
 	canPlace = true
 
 func _process(_delta):

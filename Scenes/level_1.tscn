@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b62akuhiksncf"]
+[gd_scene load_steps=11 format=3 uid="uid://b62akuhiksncf"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_kqwxt"]
 [ext_resource type="PackedScene" uid="uid://c7l05me1myimm" path="res://Scenes/dialogue_box.tscn" id="2_6fhs4"]
+[ext_resource type="PackedScene" uid="uid://blr0v4gnxedwl" path="res://Scenes/reactor.tscn" id="4_34d4u"]
 [ext_resource type="Texture2D" uid="uid://bckmrg5vq6vew" path="res://Art/Sprites/IsoTiles.png" id="4_stnlp"]
+[ext_resource type="Texture2D" uid="uid://cskdpfeiquinv" path="res://Art/Sprites/light.png" id="5_4k7h4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q1h1k"]
 texture = ExtResource("4_stnlp")
@@ -22,10 +24,29 @@ tile_offset_axis = 1
 tile_size = Vector2i(22, 11)
 sources/0 = SubResource("TileSetAtlasSource_q1h1k")
 
-[node name="Level1" type="Node2D" node_paths=PackedStringArray("panCameraTo", "dialogueBox")]
+[sub_resource type="Curve2D" id="Curve2D_5m0mc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 60.2, 41.4, 0, 0, 0, 0, -5.6, 7.59999)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_iw616"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 49.6, 47.4, 0, 0, 0, 0, -16.2, 13.2)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_6uvkt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 38.2, 52.4, 0, 0, 0, 0, -27.4, 19.2)
+}
+point_count = 2
+
+[node name="Level1" type="Node2D" node_paths=PackedStringArray("panCameraTo", "dialogueBox", "enemyPaths")]
 script = ExtResource("1_kqwxt")
 panCameraTo = NodePath("IsoTiles")
 dialogueBox = NodePath("CanvasLayer/CenterContainer/DialogueBox")
+enemyPaths = [NodePath("IsoTiles/Path2D"), NodePath("IsoTiles/Path2D2"), NodePath("IsoTiles/Path2D3")]
 
 [node name="Camera" type="Node2D" parent="."]
 
@@ -60,13 +81,13 @@ scale = Vector2(5, 5)
 tile_set = SubResource("TileSet_k8o7l")
 format = 2
 layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(0, 0, 0, 131071, 0, 0, 65535, 0, 0, 65536, 131072, 0, 65537, 131072, 0, 65538, 131072, 0, 196607, 0, 0, 131072, 131072, 0, 131073, 131072, 0, 131074, 131072, 0, 1, 0, 0, 2, 0, 0, 196606, 0, 0, -65534, 65536, 0, 196608, 131072, 0, 196609, 131072, 0, 196610, 131072, 0, 196611, 131072, 0, 196612, 131072, 0, 196613, 131072, 0, 131075, 131072, 0, 131076, 131072, 0, 131077, 131072, 0, 65539, 131072, 0, 65540, 131072, 0, 65541, 131072, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 262143, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, -65533, 65536, 0, -65532, 65536, 0, -65531, 65536, 0, 262142, 0, 0, 327678, 65536, 0, 131070, 0, 0, 131069, 0, 0, 196605, 0, 0, 262141, 0, 0, 65533, 65536, 0, 65532, 65536, 0, 131068, 65536, 0, 196604, 65536, 0, 262140, 65536, 0, 327676, 65536, 0, 327677, 65536, 0)
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 131071, 0, 0, 65535, 0, 0, 65536, 131072, 0, 65537, 131072, 0, 65538, 131072, 0, 196607, 0, 0, 131072, 131072, 0, 131073, 131072, 0, 131074, 131072, 0, 1, 0, 0, 2, 0, 0, 196606, 0, 0, -65534, 65536, 0, 196608, 131072, 0, 196609, 131072, 0, 196610, 131072, 0, 196611, 131072, 0, 196612, 131072, 0, 196613, 131072, 0, 131075, 131072, 0, 131076, 131072, 0, 131077, 131072, 0, 65539, 131072, 0, 65540, 131072, 0, 65541, 131072, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 262143, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, -65533, 65536, 0, -65532, 65536, 0, -65531, 65536, 0, 262142, 0, 0, 131070, 0, 0, 131069, 0, 0, 196605, 0, 0, 262141, 0, 0, 65533, 65536, 0, 65532, 65536, 0, 131068, 65536, 0, 196604, 65536, 0, 262140, 65536, 0, 327678, 0, 0, 327677, 0, 0, 327676, 65536, 0)
 layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 50
-layer_1/tile_data = PackedInt32Array(-131071, 65536, 0, -131072, 65536, 0, -65537, 65536, 0, -65538, 65536, 0, -3, 65536, 0, -65539, 65536, 0, -131070, 65536, 0, -131069, 65536, 0, -131068, 65536, 0, 262141, 65536, 0, -4, 65536, 0, -5, 65536, 0, 65531, 65536, 0, 131067, 65536, 0, 196603, 65536, 0, 262139, 65536, 0, 262140, 65536, 0)
+layer_1/tile_data = PackedInt32Array(-131071, 65536, 0, -131072, 65536, 0, -65537, 65536, 0, -65538, 65536, 0, -3, 65536, 0, -65539, 65536, 0, -131070, 65536, 0, -131069, 65536, 0, -131068, 65536, 0, -4, 65536, 0, -5, 65536, 0, 65531, 65536, 0, 131067, 65536, 0, 196603, 65536, 0, 262139, 65536, 0)
 layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 100
-layer_2/tile_data = PackedInt32Array(-196608, 65536, 0, -131073, 65536, 0, -131074, 65536, 0, -131075, 65536, 0, -131076, 65536, 0, -196607, 65536, 0, -196606, 65536, 0, -196605, 65536, 0, 196604, 65536, 0, -65540, 65536, 0, -65541, 65536, 0, -65542, 65536, 0, -6, 65536, 0, 65530, 65536, 0, 131066, 65536, 0, 196602, 65536, 0, 196603, 65536, 0)
+layer_2/tile_data = PackedInt32Array(-196608, 65536, 0, -131073, 65536, 0, -131074, 65536, 0, -131075, 65536, 0, -131076, 65536, 0, -196607, 65536, 0, -196606, 65536, 0, -196605, 65536, 0, -65540, 65536, 0, -65541, 65536, 0, -65542, 65536, 0, -6, 65536, 0, 65530, 65536, 0, 131066, 65536, 0, 196602, 65536, 0)
 layer_3/y_sort_enabled = true
 layer_3/y_sort_origin = 150
 layer_3/tile_data = PackedInt32Array()
@@ -82,3 +103,26 @@ layer_6/tile_data = PackedInt32Array()
 layer_7/y_sort_enabled = true
 layer_7/y_sort_origin = 350
 layer_7/tile_data = PackedInt32Array()
+
+[node name="Path2D" type="Path2D" parent="IsoTiles"]
+z_index = 1
+curve = SubResource("Curve2D_5m0mc")
+
+[node name="Path2D2" type="Path2D" parent="IsoTiles"]
+z_index = 1
+curve = SubResource("Curve2D_iw616")
+
+[node name="Path2D3" type="Path2D" parent="IsoTiles"]
+z_index = 1
+curve = SubResource("Curve2D_6uvkt")
+
+[node name="Reactor" parent="." instance=ExtResource("4_34d4u")]
+position = Vector2(-166, 572)
+
+[node name="PointLight2D" type="PointLight2D" parent="Reactor"]
+position = Vector2(5.99998, 51)
+scale = Vector2(8.86, 7.02)
+color = Color(0, 1, 1, 1)
+energy = 2.12
+texture = ExtResource("5_4k7h4")
+texture_scale = 0.4

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://blr0v4gnxedwl"]
+
+[ext_resource type="Texture2D" uid="uid://fcggfc3g8veo" path="res://Art/Sprites/Reactor.png" id="1_a6jg8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ijm7w"]
+radius = 29.0
+height = 188.0
+
+[node name="Reactor" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("1_a6jg8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 55)
+shape = SubResource("CapsuleShape2D_ijm7w")
