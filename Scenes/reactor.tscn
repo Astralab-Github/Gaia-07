@@ -21,6 +21,6 @@ shape = SubResource("CapsuleShape2D_ijm7w")
 position = Vector2(5.99998, 51)
 scale = Vector2(8.86, 7.02)
 color = Color(0, 1, 1, 1)
-energy = 3.19
+energy = 1.46
 texture = ExtResource("2_vhasy")
 texture_scale = 0.4

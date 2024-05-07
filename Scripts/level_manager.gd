@@ -8,6 +8,7 @@ extends Node2D
 var currentMousePos: Vector2i
 var canPlace: bool = false
 
+const SLIME: PackedScene = preload("res://Scenes/slime.tscn")
 const VHS_FILTER: PackedScene = preload("res://Scenes/vhs.tscn")
 const TOWER: PackedScene = preload("res://Scenes/tower.tscn")
 const TYPE_SPEED: float = 0.035
@@ -45,6 +46,18 @@ func typewriter(text, labelObject):
 	
 	await get_tree().create_timer(2).timeout
 
+func send_enemy(lane: int, type: int): # type 0: slime
+	var pFollow = PathFollow2D.new()
+	var enemy
+	match type:
+		0:
+			enemy = SLIME.instantiate()
+	pFollow.rotates = false
+	pFollow.add_child(enemy)
+	enemyPaths[lane].add_child(pFollow)
+	enemy.get_node("AnimatedSprite2D").play("default")
+	get_tree().create_tween().tween_property(pFollow, "progress_ratio", 1, enemy.get_meta("Speed"))
+
 func _ready():
 	$CanvasLayer.visible = true
 	
@@ -77,6 +90,8 @@ func _ready():
 	# enable the gameloop and tower placing n stuff
 	await get_tree().create_tween().tween_property($Camera, "position", panCameraTo.position, 1).finished
 	canPlace = true
+	
+	send_enemy(randi_range(0, 2), 0) # send enemy on any lane, send a slime
 
 func _process(_delta):
 	for light in panicLights:
