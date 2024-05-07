@@ -3,6 +3,7 @@ extends Node2D
 @export var panCameraTo: Node2D
 @export var dialogueBox: TextureRect
 @export var enemyPaths: Array[Path2D]
+@export var panicLights: Array[PointLight2D]
 
 var currentMousePos: Vector2i
 var canPlace: bool = false
@@ -54,6 +55,7 @@ func _ready():
 	var currentDialogue: PackedStringArray = DIALOGUE[Globals.levelName]
 	await get_tree().create_tween().tween_property(dialogueBox, "modulate:a", 0.8, 1).finished
 	for text in currentDialogue:
+		break
 		var splitText = text.split(":")
 		var speakerText = splitText[0]
 		dialogueBox.get_node("Speaker").set_text(speakerText)
@@ -77,8 +79,8 @@ func _ready():
 	canPlace = true
 
 func _process(_delta):
-	#currentMousePos = $IsoTiles.local_to_map($IsoTiles.get_local_mouse_position())
-	pass
+	for light in panicLights:
+		light.rotation_degrees += 4
 
 func _input(event):
 	if event.is_action_pressed("left_click"):

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://blr0v4gnxedwl"]
+[gd_scene load_steps=4 format=3 uid="uid://blr0v4gnxedwl"]
 
 [ext_resource type="Texture2D" uid="uid://fcggfc3g8veo" path="res://Art/Sprites/Reactor.png" id="1_a6jg8"]
+[ext_resource type="Texture2D" uid="uid://cskdpfeiquinv" path="res://Art/Sprites/light.png" id="2_vhasy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ijm7w"]
 radius = 29.0
@@ -15,3 +16,11 @@ texture = ExtResource("1_a6jg8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 55)
 shape = SubResource("CapsuleShape2D_ijm7w")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(5.99998, 51)
+scale = Vector2(8.86, 7.02)
+color = Color(0, 1, 1, 1)
+energy = 3.19
+texture = ExtResource("2_vhasy")
+texture_scale = 0.4
