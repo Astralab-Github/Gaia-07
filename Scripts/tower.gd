@@ -3,6 +3,8 @@ extends Area2D
 @onready var towerId = Globals.spawnTowersWithID # 0: Line, 1: Crowd, 2: Prec, 3: SG, 4: RU
 var currentTower: AnimatedSprite2D
 
+var firing: bool = false
+
 func _ready():
 	match towerId:
 		0:
@@ -19,3 +21,9 @@ func _ready():
 	currentTower.visible = true
 	currentTower.play("idle")
 	
+func _process(_delta):
+	match towerId:
+		0:
+			if not firing:
+				firing = true
+				

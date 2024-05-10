@@ -56,12 +56,14 @@ func send_enemy(lane: int, type: int): # type 0: slime
 	pFollow.add_child(enemy)
 	enemyPaths[lane].add_child(pFollow)
 	enemy.get_node("AnimatedSprite2D").play("default")
-	get_tree().create_tween().tween_property(pFollow, "progress_ratio", 1, enemy.get_meta("Speed"))
+	await get_tree().create_tween().tween_property(pFollow, "progress_ratio", 1, enemy.get_meta("Speed")).finished
+	await get_tree().create_tween().tween_property(enemy, "global_position", $Reactor.global_position + Vector2(0,120), 1).finished
+	
 
 func _ready():
 	$CanvasLayer.visible = true
 	
-	#var vhsFilter = VHS_FILTER.instantiate(); $CanvasLayer.add_child(vhsFilter)
+	var vhsFilter = VHS_FILTER.instantiate(); $CanvasLayer.add_child(vhsFilter)
 	
 	# Run Dialogue
 	print(get_tree().get_root().get_children())
@@ -91,7 +93,7 @@ func _ready():
 	await get_tree().create_tween().tween_property($Camera, "position", panCameraTo.position, 1).finished
 	canPlace = true
 	
-	send_enemy(randi_range(0, 2), 0) # send enemy on any lane, send a slime
+	send_enemy(randi_range(0, len(enemyPaths)-1), 0) # send enemy on any lane, send a slime
 
 func _process(_delta):
 	for light in panicLights:
