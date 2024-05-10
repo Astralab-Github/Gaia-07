@@ -95,9 +95,9 @@ func _ready():
 	
 	send_enemy(randi_range(0, len(enemyPaths)-1), 0) # send enemy on any lane, send a slime
 
-func _process(_delta):
+func _process(delta):
 	for light in panicLights:
-		light.rotation_degrees += 4
+		light.rotation_degrees += 200 * delta
 
 func _input(event):
 	if event.is_action_pressed("left_click"):
