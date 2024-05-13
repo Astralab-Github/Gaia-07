@@ -5,8 +5,7 @@ var currentTower: AnimatedSprite2D
 
 const BULLET: PackedScene = preload("res://Scenes/bullet.tscn")
 
-const LINE_TURRET_COOLDOWN: float = 0.7
-
+var lineTurretCooldown: float = 0.7
 var firing: bool = false
 
 func _ready():
@@ -40,5 +39,13 @@ func _process(_delta):
 				await get_tree().create_tween().tween_property(bullet, "global_position", target_pos, 0.2).finished
 				bullet.queue_free()
 				
-				await get_tree().create_timer(LINE_TURRET_COOLDOWN).timeout
+				await get_tree().create_timer(lineTurretCooldown).timeout
 				firing = false
+		1:
+			pass
+		2:
+			pass
+		3:
+			pass
+		4:
+			pass

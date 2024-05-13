@@ -34,6 +34,7 @@ animations = [{
 radius = 7.4027
 
 [node name="Slime" type="StaticBody2D"]
+z_index = 10
 script = ExtResource("1_pb3fq")
 metadata/Speed = 10.0
 

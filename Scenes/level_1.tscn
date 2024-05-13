@@ -68,6 +68,11 @@ position_smoothing_speed = 3.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("6_y5pg0")]
+visible = false
+offset_left = 0.0
+offset_top = 146.0
+offset_right = 0.0
+offset_bottom = 146.0
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 anchors_preset = 7

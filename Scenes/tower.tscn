@@ -142,6 +142,7 @@ z_index = 10
 script = ExtResource("1_x5fsd")
 
 [node name="LineTurret" type="AnimatedSprite2D" parent="."]
+visible = false
 modulate = Color(0.709804, 0.780392, 0.929412, 1)
 sprite_frames = SubResource("SpriteFrames_7n1wk")
 animation = &"idle"

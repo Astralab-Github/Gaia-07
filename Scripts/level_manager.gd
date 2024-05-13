@@ -60,7 +60,7 @@ func _ready():
 	$CanvasLayer.visible = true
 	Globals.reactor_position = $Reactor.global_position
 	
-	var vhsFilter = VHS_FILTER.instantiate(); $CanvasLayer.add_child(vhsFilter)
+	#var vhsFilter = VHS_FILTER.instantiate(); $CanvasLayer.add_child(vhsFilter)
 	
 	# Run Dialogue
 	print(get_tree().get_root().get_children())
@@ -83,11 +83,14 @@ func _ready():
 				get_tree().create_tween().tween_property(dialogueBox.get_node("Rackham"), "modulate:a", .45, 0.5)
 		await typewriter(splitText[1], dialogueBox.get_node("Text"))
 	await get_tree().create_tween().tween_property(dialogueBox, "modulate:a", 0, 1).finished
+	dialogueBox.get_parent().queue_free()
 	
 	# Run Game
 	# probably introduce ui with a cool tween and start a little tutorial sequence if its level 1
 	# enable the gameloop and tower placing n stuff
 	await get_tree().create_tween().tween_property($Camera, "position", panCameraTo.position, 1).finished
+	$CanvasLayer/UI.visible = true
+	get_tree().create_tween().tween_property($CanvasLayer/UI, "position", Vector2(0,0), 1)
 	canPlace = true
 	
 	while true:

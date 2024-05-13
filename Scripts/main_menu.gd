@@ -5,6 +5,7 @@ const LEVEL_ONE: PackedScene = preload("res://Scenes/level_1.tscn")
 func _ready():
 	$Splash.visible = true
 	$Sounds/Intro.play()
+	get_tree().create_tween().tween_property($Splash/PointLight2D, "position", Vector2(1198, 301), 2)
 	await get_tree().create_timer(2).timeout
 	await get_tree().create_tween().tween_property($Splash, "modulate:a", 0, 1).finished
 	$Splash.queue_free()

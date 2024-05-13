@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlo15nt0pshop"]
+[gd_scene load_steps=14 format=3 uid="uid://dlo15nt0pshop"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_55yhq"]
 [ext_resource type="FontFile" uid="uid://oudit55que20" path="res://Resources/Fonts/PixelifySans-Bold.ttf" id="1_k0o2v"]
 [ext_resource type="Texture2D" uid="uid://bp3ydapw15sal" path="res://Art/Sprites/Star.png" id="2_cnojy"]
 [ext_resource type="PackedScene" uid="uid://d07mfdlil4jx8" path="res://Scenes/vhs.tscn" id="2_mq3yf"]
 [ext_resource type="Texture2D" uid="uid://w2qw51ius4at" path="res://Art/Sprites/astralab.png" id="3_2uc78"]
+[ext_resource type="Texture2D" uid="uid://cskdpfeiquinv" path="res://Art/Sprites/light.png" id="5_b7xvh"]
 [ext_resource type="Texture2D" uid="uid://dutgwikxxoggt" path="res://Art/Sprites/PlayButton.png" id="5_ec82e"]
 [ext_resource type="Texture2D" uid="uid://b7k1nluf0a53" path="res://Art/Sprites/ExitButton.png" id="5_iqd73"]
 [ext_resource type="AudioStream" uid="uid://cs112tnud4jhc" path="res://Art/Sounds/click.wav" id="7_g81qw"]
@@ -35,63 +36,63 @@ layout_mode = 1
 [node name="StarNode" type="Node" parent="."]
 
 [node name="Stars" type="GPUParticles2D" parent="StarNode"]
-position = Vector2(-627, 33)
+position = Vector2(-456, 30)
 process_material = SubResource("ParticleProcessMaterial_nol4p")
 texture = ExtResource("2_cnojy")
 lifetime = 20.0
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="Stars2" type="GPUParticles2D" parent="StarNode"]
-position = Vector2(-573, 73)
+position = Vector2(-402, 70)
 process_material = SubResource("ParticleProcessMaterial_nol4p")
 texture = ExtResource("2_cnojy")
 lifetime = 20.0
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="Stars3" type="GPUParticles2D" parent="StarNode"]
-position = Vector2(-483, 157)
+position = Vector2(-312, 154)
 process_material = SubResource("ParticleProcessMaterial_nol4p")
 texture = ExtResource("2_cnojy")
 lifetime = 20.0
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="Stars4" type="GPUParticles2D" parent="StarNode"]
-position = Vector2(-629, 237)
+position = Vector2(-458, 234)
 process_material = SubResource("ParticleProcessMaterial_nol4p")
 texture = ExtResource("2_cnojy")
 lifetime = 20.0
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="Stars5" type="GPUParticles2D" parent="StarNode"]
-position = Vector2(-556, 320)
+position = Vector2(-385, 317)
 process_material = SubResource("ParticleProcessMaterial_nol4p")
 texture = ExtResource("2_cnojy")
 lifetime = 20.0
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="Stars6" type="GPUParticles2D" parent="StarNode"]
-position = Vector2(-334, 398)
+position = Vector2(-163, 395)
 process_material = SubResource("ParticleProcessMaterial_nol4p")
 texture = ExtResource("2_cnojy")
 lifetime = 20.0
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="Stars7" type="GPUParticles2D" parent="StarNode"]
-position = Vector2(-198, 491)
+position = Vector2(-27, 488)
 process_material = SubResource("ParticleProcessMaterial_nol4p")
 texture = ExtResource("2_cnojy")
 lifetime = 20.0
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="Stars8" type="GPUParticles2D" parent="StarNode"]
-position = Vector2(-458, 554)
+position = Vector2(-287, 551)
 process_material = SubResource("ParticleProcessMaterial_nol4p")
 texture = ExtResource("2_cnojy")
 lifetime = 20.0
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="Stars9" type="GPUParticles2D" parent="StarNode"]
-position = Vector2(-617, 625)
+position = Vector2(-446, 622)
 process_material = SubResource("ParticleProcessMaterial_nol4p")
 texture = ExtResource("2_cnojy")
 lifetime = 20.0
@@ -111,6 +112,11 @@ theme_override_constants/shadow_offset_y = 5
 theme_override_fonts/font = ExtResource("1_k0o2v")
 theme_override_font_sizes/font_size = 80
 text = "Gaia-07"
+
+[node name="PointLight2D" type="PointLight2D" parent="Title"]
+position = Vector2(155, 56)
+texture = ExtResource("5_b7xvh")
+texture_scale = 1.2
 
 [node name="PlayButtonShadow" type="TextureRect" parent="."]
 modulate = Color(0.219608, 0.219608, 0.219608, 1)
@@ -138,6 +144,11 @@ texture_disabled = ExtResource("5_ec82e")
 texture_focused = ExtResource("5_ec82e")
 stretch_mode = 3
 
+[node name="PointLight2D" type="PointLight2D" parent="PlayButton"]
+position = Vector2(2.8, -8)
+texture = ExtResource("5_b7xvh")
+texture_scale = 0.3
+
 [node name="ExitButtonShadow" type="TextureRect" parent="."]
 modulate = Color(0.219608, 0.219608, 0.219608, 1)
 layout_mode = 0
@@ -164,6 +175,11 @@ texture_disabled = ExtResource("5_iqd73")
 texture_focused = ExtResource("5_iqd73")
 stretch_mode = 3
 
+[node name="PointLight2D" type="PointLight2D" parent="ExitButton"]
+position = Vector2(6.60001, -1.6)
+texture = ExtResource("5_b7xvh")
+texture_scale = 0.2
+
 [node name="Splash" type="ColorRect" parent="."]
 visible = false
 z_index = 5
@@ -174,6 +190,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="Splash"]
+position = Vector2(-77, 301)
+color = Color(0.486275, 1, 1, 1)
+energy = 4.35
+texture = ExtResource("5_b7xvh")
+texture_scale = 2.64
 
 [node name="Astralab" type="TextureRect" parent="Splash"]
 layout_mode = 1
