@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b62akuhiksncf"]
+[gd_scene load_steps=13 format=3 uid="uid://b62akuhiksncf"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_kqwxt"]
 [ext_resource type="PackedScene" uid="uid://c7l05me1myimm" path="res://Scenes/dialogue_box.tscn" id="2_6fhs4"]
 [ext_resource type="PackedScene" uid="uid://blr0v4gnxedwl" path="res://Scenes/reactor.tscn" id="4_34d4u"]
 [ext_resource type="Texture2D" uid="uid://bckmrg5vq6vew" path="res://Art/Sprites/IsoTiles.png" id="4_stnlp"]
 [ext_resource type="Texture2D" uid="uid://72dqpi1b5wcy" path="res://Art/Sprites/lightpanic.png" id="5_w57sa"]
+[ext_resource type="PackedScene" uid="uid://dsxuiln7cv3g5" path="res://Scenes/user_interface.tscn" id="6_y5pg0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q1h1k"]
 texture = ExtResource("4_stnlp")
@@ -65,6 +66,8 @@ position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("6_y5pg0")]
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 anchors_preset = 7

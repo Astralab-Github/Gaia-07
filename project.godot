@@ -16,7 +16,7 @@ config/tags=PackedStringArray("small_project")
 run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
-config/icon="res://Art/Sprites/icon.svg"
+config/icon="res://Art/Sprites/gaia07-icon.svg"
 
 [autoload]
 

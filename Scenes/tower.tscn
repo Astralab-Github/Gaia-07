@@ -142,7 +142,6 @@ z_index = 10
 script = ExtResource("1_x5fsd")
 
 [node name="LineTurret" type="AnimatedSprite2D" parent="."]
-visible = false
 modulate = Color(0.709804, 0.780392, 0.929412, 1)
 sprite_frames = SubResource("SpriteFrames_7n1wk")
 animation = &"idle"
@@ -174,3 +173,7 @@ emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_wufhg")
 texture = ExtResource("20_wp2d2")
+
+[node name="Linecast" type="RayCast2D" parent="."]
+position = Vector2(0, 12)
+target_position = Vector2(6800, 3400)

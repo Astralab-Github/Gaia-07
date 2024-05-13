@@ -55,13 +55,10 @@ func send_enemy(lane: int, type: int): # type 0: slime
 	pFollow.rotates = false
 	pFollow.add_child(enemy)
 	enemyPaths[lane].add_child(pFollow)
-	enemy.get_node("AnimatedSprite2D").play("default")
-	await get_tree().create_tween().tween_property(pFollow, "progress_ratio", 1, enemy.get_meta("Speed")).finished
-	await get_tree().create_tween().tween_property(enemy, "global_position", $Reactor.global_position + Vector2(0,120), 1).finished
-	
 
 func _ready():
 	$CanvasLayer.visible = true
+	Globals.reactor_position = $Reactor.global_position
 	
 	var vhsFilter = VHS_FILTER.instantiate(); $CanvasLayer.add_child(vhsFilter)
 	
@@ -93,7 +90,9 @@ func _ready():
 	await get_tree().create_tween().tween_property($Camera, "position", panCameraTo.position, 1).finished
 	canPlace = true
 	
-	send_enemy(randi_range(0, len(enemyPaths)-1), 0) # send enemy on any lane, send a slime
+	while true:
+		send_enemy(randi_range(0, len(enemyPaths)-1), 0) # send enemy on any lane, send a slime
+		await get_tree().create_timer(1).timeout
 
 func _process(delta):
 	for light in panicLights:
@@ -103,5 +102,5 @@ func _input(event):
 	if event.is_action_pressed("left_click"):
 		$IsoTiles.erase_cell(0, $IsoTiles.local_to_map($IsoTiles.get_local_mouse_position()))
 	elif event.is_action_pressed("right_click"):
-		Globals.spawnTowersWithID = 4; var tower = TOWER.instantiate(); $IsoTiles.add_child(tower)
+		var tower = TOWER.instantiate(); $IsoTiles.add_child(tower)
 		tower.position = $IsoTiles.map_to_local($IsoTiles.local_to_map($IsoTiles.get_local_mouse_position())) + Vector2(-.5, -10.5)

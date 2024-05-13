@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://crjcjkekud1sh"]
+
+[ext_resource type="Texture2D" uid="uid://bcnkt5y3s2lm1" path="res://Art/Sprites/Bullet.png" id="1_g6b6k"]
+[ext_resource type="Texture2D" uid="uid://cskdpfeiquinv" path="res://Art/Sprites/light.png" id="2_f352a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7lr0e"]
+radius = 0.0
+
+[node name="Bullet" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -0.344429
+texture = ExtResource("1_g6b6k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+rotation = -1.55498
+shape = SubResource("CapsuleShape2D_7lr0e")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 1, 0, 1)
+texture = ExtResource("2_f352a")
+texture_scale = 0.2
