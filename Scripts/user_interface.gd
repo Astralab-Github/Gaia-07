@@ -1,5 +1,8 @@
 extends Control
 
+func _process(_delta):
+	$ToolbarBG/ScrapIcon/ScrapAmount.set_text(str(Globals.scrap))
+
 func _on_line_turret_button_down():
 	Globals.spawnTowersWithID = 0
 

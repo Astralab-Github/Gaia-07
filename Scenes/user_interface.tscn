@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsxuiln7cv3g5"]
+[gd_scene load_steps=10 format=3 uid="uid://dsxuiln7cv3g5"]
 
 [ext_resource type="Script" path="res://Scripts/user_interface.gd" id="1_kdjpr"]
+[ext_resource type="Texture2D" uid="uid://chvc76xe27iye" path="res://Art/Sprites/Scrap.png" id="2_1gbqu"]
 [ext_resource type="FontFile" uid="uid://cy5s5ux4tfum3" path="res://Resources/Fonts/PixelifySans-SemiBold.ttf" id="2_2vhvn"]
+[ext_resource type="FontFile" uid="uid://bggd0ono22kx0" path="res://Resources/Fonts/PixelifySans-Regular.ttf" id="3_ln3si"]
 [ext_resource type="Texture2D" uid="uid://bkflyd7j00848" path="res://Art/Sprites/TowerSprites/LineTurret/LineTurretIdle.png" id="3_x46cl"]
 [ext_resource type="Texture2D" uid="uid://b01ya1e2lo5ak" path="res://Art/Sprites/TowerSprites/CrowdTurret/CrowdTurretIdle.png" id="4_tagnd"]
 [ext_resource type="Texture2D" uid="uid://8ub0ysms0t5e" path="res://Art/Sprites/TowerSprites/PrecTurret/PrecTurretIdle.png" id="5_30kkg"]
@@ -21,19 +23,42 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_kdjpr")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ToolbarBG" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -150.0
+offset_left = -231.0
 offset_top = -85.0
 offset_right = 150.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.259294, 0.259294, 0.259294, 1)
+
+[node name="ScrapIcon" type="TextureRect" parent="ToolbarBG"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 27.0
+offset_top = -32.5
+offset_right = 67.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("2_1gbqu")
+
+[node name="ScrapAmount" type="Label" parent="ToolbarBG/ScrapIcon"]
+layout_mode = 0
+offset_top = 49.0
+offset_right = 40.0
+offset_bottom = 72.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_ln3si")
+text = "0"
+horizontal_alignment = 1
 
 [node name="TowerSelector" type="HBoxContainer" parent="."]
 layout_mode = 1

@@ -67,7 +67,7 @@ func _ready():
 	var currentDialogue: PackedStringArray = DIALOGUE[Globals.levelName]
 	await get_tree().create_tween().tween_property(dialogueBox, "modulate:a", 0.8, 1).finished
 	for text in currentDialogue:
-		break
+		#break
 		var splitText = text.split(":")
 		var speakerText = splitText[0]
 		dialogueBox.get_node("Speaker").set_text(speakerText)
